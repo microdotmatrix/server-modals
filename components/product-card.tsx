@@ -1,19 +1,16 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-// import { headers } from "next/headers";
+import { headers } from "next/headers";
 
 import { Product } from "@/app/products/page";
-import { usePathname } from "next/navigation";
 import { getURL } from "@/lib/utils";
 
 export function ProductCard(product: Product) {
-  // const headersList = headers();
-  const pathname = usePathname();
-  // const pathname = headersList.get("x-pathname");
+  const headersList = headers();
+  // const pathname = usePathname();
+  const pathname = headersList.get("x-pathname");
   // const url = new URL(pathname ? pathname : "", "http://localhost:3000");
-  const path = getURL(pathname);
+  const path = getURL(pathname?.toString());
   const url = new URL(path);
 
   url.searchParams.set("modal", "true");
